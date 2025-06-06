@@ -1,0 +1,78 @@
+{% extends 'base_admin.html' %}
+{% load tz %}
+{% now "Y" as now %}
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">{{ titulo }}</h2>
+
+<form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
+    {% csrf_token %}
+    {% if form %}
+        {{ form.as_p }}
+    {% else %}
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" class="form-control" id="marca" name="marca" value="{{ veiculo.marca|default:'' }}">
+            </div>
+            <div class="col-md-6">
+                <label for="modelo" class="form-label">Modelo</label>
+                <input type="text" class="form-control" id="modelo" name="modelo" value="{{ veiculo.modelo|default:'' }}">
+            </div>
+            <div class="col-md-4">
+                <label for="ano" class="form-label">Ano</label>
+                <input type="number" class="form-control" id="ano" name="ano" value="{{ veiculo.ano|default:'' }}">
+            </div>
+            <div class="col-md-4">
+                <label for="cor" class="form-label">Cor</label>
+                <input type="text" class="form-control" id="cor" name="cor" value="{{ veiculo.cor|default:'' }}">
+            </div>
+            <div class="col-md-4">
+                <label for="quilometragem" class="form-label">Quilometragem</label>
+                <input type="number" class="form-control" id="quilometragem" name="quilometragem" value="{{ veiculo.quilometragem|default:'' }}">
+            </div>
+            <div class="col-md-6">
+                <label for="preco" class="form-label">Preço</label>
+                <input type="text" class="form-control" id="preco" name="preco" value="{{ veiculo.preco|default:'' }}">
+            </div>
+            <div class="col-md-6">
+                <label for="fipe" class="form-label">Tabela FIPE</label>
+                <input type="text" class="form-control" id="fipe" name="fipe" value="{{ veiculo.fipe|default:'' }}">
+            </div>
+            <!-- Indicador automático baseado na comparação -->
+            {% if veiculo.preco and veiculo.fipe %}
+                {% if veiculo.preco < veiculo.fipe %}
+                    <div class="col-md-12">
+                        <div class="alert alert-success">
+                            Preço abaixo da tabela FIPE!
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-md-12">
+                        <div class="alert alert-warning">
+                            Preço acima da tabela FIPE.
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+            <div class="col-md-12">
+                <label for="foto" class="form-label">Foto</label>
+                <input type="file" class="form-control" id="foto" name="foto">
+            <div class="col-md-12">
+                <label for="descricao" class="form-label">Descrição detalhada</label>
+                <textarea class="form-control" id="descricao" name="descricao" rows="4">{{ veiculo.descricao|default:'' }}</textarea>
+            </div>
+
+            </div>
+            <div class="col-md-12">
+                <div class="form-check mt-3">
+                    <input type="checkbox" class="form-check-input" id="destaque" name="destaque"
+                        {% if veiculo and veiculo.destaque %}checked{% endif %}>
+                    <label class="form-check-label" for="destaque">Destaque</label>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="mt-4">
+        <button type="submit" class="btn bt

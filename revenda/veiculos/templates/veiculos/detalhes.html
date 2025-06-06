@@ -1,0 +1,38 @@
+{% extends 'veiculos/base_cliente.html' %}
+{% load humanize %}
+{% load static %}
+{% load tz %}
+{% now "Y" as now %}
+
+{% block title %}Detalhes do Veículo{% endblock %}
+
+{% block content %}
+<h2 class="mb-4 text-center">Detalhes do Veículo</h2>
+
+<div class="card shadow-sm mb-4">
+    {% if veiculo.foto %}
+        <img src="{{ veiculo.foto.url }}" class="card-img-top" alt="Foto do veículo">
+    {% else %}
+        <img src="{% static 'sem_foto.png' %}" class="card-img-top" alt="Sem foto disponível">
+    {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">{{ veiculo.marca }} {{ veiculo.modelo }}</h5>
+        <p class="card-text">
+            <strong>Ano:</strong> {{ veiculo.ano }}<br>
+            <strong>Cor:</strong> {{ veiculo.cor }}<br>
+            <strong>KM:</strong> {{ veiculo.quilometragem|floatformat:0 }} km<br>
+            <strong>Preço:</strong> R$ {{ veiculo.preco|floatformat:2|intcomma }}<br>
+            <strong>Tabela FIPE:</strong> R$ {{ veiculo.fipe|floatformat:2|intcomma }}<br>
+        </p>
+
+        {% if veiculo.descricao %}
+            <div class="mt-3">
+                <h6><strong>Detalhes e Itens de Fábrica:</strong></h6>
+                <p>{{ veiculo.descricao|linebreaks }}</p>
+            </div>
+        {% endif %}
+
+        <a href="{% url 'home' %}" class="btn btn-secondary mt-3">← Voltar à página inicial</a>
+    </div>
+</div>
+{% endblock %}

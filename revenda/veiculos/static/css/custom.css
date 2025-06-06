@@ -1,0 +1,23 @@
+/* Estilo do selo que fica posicionado no canto superior esquerdo da imagem */
+.badge.position-absolute {
+    padding: 0.4em 0.8em;
+    font-size: 0.8rem;
+    border-radius: 0.25rem;
+    z-index: 10;
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    font-weight: 600;
+    color: white;
+}
+
+/* Selo para veículos abaixo da tabela FIPE */
+.badge.fipe-baixo {
+    background-color: #198754; /* verde Bootstrap */
+}
+
+/* Selo para veículos em destaque */
+.badge.destaque {
+    background-color: #ffc107; /* amarelo Bootstrap */
+    color: #212529; /* texto escuro para contraste */
+}
