@@ -5,9 +5,10 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Segurança
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = False
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['sistema-revenda-veiculos.onrender.com', 'localhost']
+
 
 # Aplicativos instalados
 INSTALLED_APPS = [
