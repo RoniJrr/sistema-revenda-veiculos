@@ -1,1 +1,2 @@
-web: gunicorn revenda.wsgi:application
+web: gunicorn revenda.revenda.wsgi
+
