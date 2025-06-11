@@ -1,2 +1,3 @@
-web: gunicorn revenda.revenda.wsgi
+web: gunicorn veiculos.wsgi
+
 
