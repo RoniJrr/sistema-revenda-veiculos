@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Segurança
 SECRET_KEY = SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-v#)04xp*172r@3was$v36i+m7k%q(&kou^*m7gmd3y_#^3g@&l')
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+DEBUG = False
 ALLOWED_HOSTS = ['sistema-revenda-veiculos.onrender.com']
 
 
@@ -25,6 +25,7 @@ INSTALLED_APPS = [
 # Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -90,3 +91,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Chave primária padrão
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
