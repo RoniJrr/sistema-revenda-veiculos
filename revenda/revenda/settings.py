@@ -5,9 +5,9 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Segurança
-SECRET_KEY = SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
-DEBUG = False
-ALLOWED_HOSTS = ['sistema-revenda-veiculos.onrender.com', 'localhost']
+SECRET_KEY = SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-v#)04xp*172r@3was$v36i+m7k%q(&kou^*m7gmd3y_#^3g@&l')
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
+ALLOWED_HOSTS = ['sistema-revenda-veiculos.onrender.com']
 
 
 # Aplicativos instalados
